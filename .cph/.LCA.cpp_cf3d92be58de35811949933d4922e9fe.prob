@@ -1,0 +1,1 @@
+{"name":"Local: LCA","url":"d:\\kienthuc\\LCA.cpp","tests":[{"id":1657374581954,"input":"9 3\n1 2\n1 3\n2 4\n2 5\n5 6\n5 7\n3 8\n3 9\n4 6\n4 8\n8 9","output":"2\n1\n3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\kienthuc\\LCA.cpp","group":"local","local":true}
