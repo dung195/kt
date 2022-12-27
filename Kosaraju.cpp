@@ -12,6 +12,7 @@ const ll N = 1e7;
 const ll inf = 1e18;
 const ll MOD = 123456789;
 const ll LOG = 20;
+//https://oj.vnoi.info/problem/tjalg
 vector<int>graph[sized];
 vector<int>revgraph[sized];
 stack<int>st;
