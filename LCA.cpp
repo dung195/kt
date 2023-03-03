@@ -1,47 +1,46 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 #define ll long long
 #define ld long double
+#define pii pair<int,int>
+#define pll pair<ll,ll>
 #define pq priority_queue
-#define pii pair<int, int>
-#define pll pair<ll, ll>
 #define bs binary_search
+#define int ll
 const ll sized = 1e6;
 const ll N = 1e7;
 const ll inf = 1e18;
-const ll MOD = 123456789;       
+const ll MOD = 123456789;
 const ll LOG = 20;
-int m,n,q;
 vector<int>graph[sized];
+int par[sized][LOG];
 int h[sized];
-int p[sized][LOG];
-// B1: tìm độ cao h và cha thứ 2^0 của i
-void dfs(int S){
-    for(int i=0;i<graph[S].size();i++){
-        p[graph[S][i]][0]=S;
-        h[graph[S][i]]=h[S]+1;
-        dfs(graph[S][i]);
+void dfs(int u){
+    for(int i=0;i<graph[u].size();i++){
+        int v=graph[u][i];
+        par[v][0]=u;
+        h[v]=h[u]+1;
+        dfs(v);
     }
 }
-//B3: getbit
-int getbit(int x,int i){                                
-    return (x>>i)&1;
+int getbit(int x,int i){
+    return(x>>i)&1;
 }
-//B4: hàm lca
-int lca(int a,int b){
-    if(h[a]<h[b]) swap(a,b);
-    int x=h[a]-h[b];// khoảng cách giữa a và b
+int lca(int u,int v){
+    if(h[u]<h[v]) swap(u,v);
+    int x=h[u]-h[v];
+
     for(int i=LOG-1;i>=0;i--){
-        if(getbit(x,i)==1) a=p[a][i]; // nhảy theo 2 mũ để san bằng khoảng cách giữa a và b, nếu x có 2 mũ thì nhảy theo 2 mũ
+        if(getbit(x,i)==1) u=par[u][i];
     }
-    if(a==b) return a;
+    if(u==v) return u;
     for(int i=LOG-1;i>=0;i--){
-        if(p[a][i]!=p[b][i]){ // nếu cha thứ 2 mũ i của a,b khác nhau thì nhảy
-            a=p[a][i];
-            b=p[b][i];
+        if(par[u][i]!=par[v][i]){
+            u=par[u][i];
+            v=par[v][i];
         }
     }
-    return p[a][0]; // in ra cha 
+    return par[u][0];
 }
 main(){
     ios_base::sync_with_stdio(0);
@@ -49,23 +48,31 @@ main(){
     cout.tie(0);
     // freopen("main.inp","r",stdin);
 	// freopen("main.out","w",stdout);
-    cin>>n>>q;
-    for(int i=1;i<n;i++){
-        int a,b;
-        cin>>a>>b;
-        graph[a].push_back(b);              
+    int n,m;
+    cin>>n>>m;
+    for(int i=0;i<m;i++){
+        int u,v;
+        cin>>u>>v;
+        graph[u].push_back(v);
     }
     dfs(1);
-    // B2: hoàn thiện mảng p
-    for(int i=1;i<LOG;i++){
-        for(int u=1;u<=n;u++){
-            p[u][i]=p[p[u][i-1]][i-1]; // cha thứ 2**i của x =cha thứ 2**(i-1) của cha thứ 2**(i-1) của x
+    for(int j=1;j<LOG;j++){
+        for(int i=1;i<=n;i++){
+            par[i][j]=par[par[i][j-1]][j-1];
         }
     }
+    // for(int i=1;i<=n;i++){
+    //     for(int j=0;j<=2;j++){
+    //         cout<<par[i][j]<<" ";
+    //     }
+    //     cout<<endl;
+    // }
+    int q;
+    cin>>q;
     for(int i=0;i<q;i++){
-        int a,b;
-        cin>>a>>b;
-        cout<<lca(a,b)<<endl;
+        int u,v;
+        cin>>u>>v;
+        cout<<lca(u,v)<<" ";
     }
     return 0;
 }
