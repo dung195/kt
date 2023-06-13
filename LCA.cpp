@@ -63,9 +63,9 @@ main(){
     }
     // for(int i=1;i<=n;i++){
     //     for(int j=0;j<=2;j++){
-    //         cout<<par[i][j]<<" ";
+    //         cerr<<par[i][j]<<" ";
     //     }
-    //     cout<<endl;
+    //     cerr<<endl;
     // }
     int q;
     cin>>q;
