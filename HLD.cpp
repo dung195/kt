@@ -33,7 +33,13 @@ void hld(int u){
     if(mxvtx>-1){
         hld(mxvtx);
     }
-    
+    for(int i=0;i<graph[u].size();i++){
+        int v=graph[u][i].first;
+        if(v!=mxvtx){
+            nChain++;
+            hld(v);
+        }
+    }
 }
 main(){
     ios_base::sync_with_stdio(0);
