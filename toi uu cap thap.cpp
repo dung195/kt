@@ -11,6 +11,7 @@ const ll N = 1e7;
 const ll inf = 1e18;
 const ll MOD = 123456789;
 const ll LOG = 20;
+int bang[sized];
 int abs_1(int x){
     int y=x>>31;
     return (x+y)^y;
@@ -25,7 +26,6 @@ main(){
     cout.tie(0);
     // freopen("main.inp","r",stdin);
 	// freopen("main.out","w",stdout);
-    cout<<max(3,5)<<endl;
-    cout<<abs(99)<<endl;
+
     return 0;
 }

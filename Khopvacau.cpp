@@ -30,7 +30,7 @@ void dfs(int u,int p){
                 dfs(v,u);
                 child++;
                 low[u]=min(low[u],low[v]);
-                if(low[v]>=num[v]) edge++;
+                if(low[v]==num[v]) edge++;
                 if(u==p){
                     if(child>=2){
                         Node[u]=true;
@@ -60,6 +60,15 @@ main(){
     for(int i=1;i<=n;i++){
         if(!num[i]) dfs(i,i);
     }
+    for(int i=1;i<=n;i++){
+        cerr<<low[i]<<" ";
+    }
+    cerr<<endl;
+    for(int j=1;j<=n;j++){
+        cerr<<num[j]<<" ";
+    }
+    cerr<<endl;
+    // cerr<<child<<endl;
     int dem=0;
     for(int i=1;i<=n;i++){
         if(Node[i]==true) dem++;
