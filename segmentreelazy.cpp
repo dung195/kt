@@ -15,6 +15,7 @@ const ll LOG = 20;
 int bang[sized];
 int st[sized*4];
 int la[sized];
+//https://oj.vnoi.info/problem/segtree_itds1
 void buildtree(int l,int r,int id){
     if(l==r){
         st[id]=bang[l];
